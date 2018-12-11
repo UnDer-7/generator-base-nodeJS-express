@@ -1,21 +1,29 @@
 {
   "name": "generator-base-nodejs-express",
   "version": "1.0.0",
-  "description": "",
+  "description": "yeoman generator for a simple nodejs/express",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnDer-7/generator-base-nodeJS-express"
   },
   "keywords": [
     "yeoman-generator",
     "nodejs",
     "express"
   ],
-  "author": "mateus gomes",
+  "author": "Mateus Gomes",
   "license": "ISC",
   "dependencies": {
     "yeoman-generator": "^3.1.1"
   },
+  "bugs": {
+    "url": "https://github.com/UnDer-7/generator-base-nodeJS-express/issues"
+  },
+  "homepage": "https://github.com/UnDer-7/generator-base-nodeJS-express#readme",
   "files": [
     "app"
   ]
