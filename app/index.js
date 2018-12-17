@@ -38,25 +38,19 @@ module.exports = class extends Generator {
 
   start() {
     this._private_src()
-    this.log('\nsrc files created\n')
 
     this._private_gitignore()
-    this.log('.gitignore file created\n')
 
     this._private_editorconfig()
-    this.log('.editorconfig file created\n')
 
     this._private_eslint()
-    this.log('.eslint file created\n')
 
     this._private_packageJson()
-    this.log('package.json file created\n')
 
     if (this.answers.controllerOption) {
-      this._private_controller()
+      this._private_separately_controller()
     }
-
-    this.npmInstall();
+    // this.npmInstall();
   }
 
   _private_src() {
@@ -69,14 +63,22 @@ module.exports = class extends Generator {
       this.templatePath('./src/index.js'),
       this.destinationPath('index.js')
     )
-    this.fs.copyTpl(
-      this.templatePath('./src/routes.js'),
-      this.destinationPath('routes.js')
-    )
+
+    if (this.answers.controllerOption) {
+      this.fs.copyTpl(
+        this.templatePath('./src/routesV1.js'),
+        this.destinationPath('routes.js')
+      )
+    }else {
+      this.fs.copyTpl(
+        this.templatePath('./src/routesV2.js'),
+        this.destinationPath('routes.js')
+      )
+    }
   }
 
-  _private_controller() {
-    this.destinationRoot(path.resolve('app', 'controller'))
+  _private_separately_controller() {
+    this.destinationRoot(path.resolve('src', 'app', 'controller'))
     this.fs.copyTpl(
       this.templatePath('./src/app/controller/TestController.js'),
       this.destinationPath(`${this.controllerName.controllerName}Controller.js`),
@@ -84,6 +86,10 @@ module.exports = class extends Generator {
         info: this.controllerName.controllerName
       }
     )
+  }
+
+  _private_routes() {
+    this.destinationPath()
   }
 
   _private_gitignore() {
