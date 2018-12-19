@@ -83,7 +83,7 @@ module.exports = class extends Generator {
       this.templatePath('./src/app/controller/TestController.js'),
       this.destinationPath(`${this.controllerName.controllerName}Controller.js`),
       {
-        info: this.controllerName.controllerName
+        name: this.controllerName.controllerName
       }
     )
   }
